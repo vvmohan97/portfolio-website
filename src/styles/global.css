@@ -1,0 +1,117 @@
+/* Default Light Theme Styles */
+:root {
+    --bg-color-light: rgb(240, 240, 240); /* Light background */
+    --text-color-light: black; /* Light text color */
+    --bg-color-dark: #1c1c1c; /* Dark background */
+    --text-color-dark: white; /* Dark text color */
+  }
+  
+  /* For Body and Section Colors */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color-light); /* Default light background */
+    color: var(--text-color-light); /* Default light text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Apply Dark Theme */
+  body.dark-theme {
+    background-color: var(--bg-color-dark); /* Dark background */
+    color: var(--text-color-dark); /* Dark text color */
+  }
+  
+  /* Apply Dark Theme for All Sections */
+  body.dark-theme section {
+    background-color: var(--bg-color-dark); /* Dark section background */
+    color: var(--text-color-dark); /* Dark section text color */
+  }
+  
+  /* Default Section Styles (Light Theme) */
+  section {
+    background-color: var(--bg-color-light); /* Light section background */
+    color: var(--text-color-light); /* Light section text color */
+    padding: 60px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Additional Styles for Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: transparent;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+  
+  /* Dark Theme Navbar */
+  body.dark-theme .navbar {
+    background-color: #333;
+  }
+  
+  /* Light and Dark Theme Adjustments for Text */
+  body.dark-theme .navbar .logo a,
+  body.dark-theme .navbar .nav-links a,
+  body.dark-theme .theme-toggle {
+    color: white;
+  }
+  
+  body:not(.dark-theme) .navbar .logo a,
+  body:not(.dark-theme) .navbar .nav-links a,
+  body:not(.dark-theme) .theme-toggle {
+    color: black;
+  }
+  
+  .navbar .nav-links a:hover {
+    border-bottom: 2px solid #f0a500;
+  }
+  
+  .language-select {
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid #000;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Theme Toggle Button */
+  .theme-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+  }
+  
+  /* Dark and Light Theme Toggle */
+  body.dark-theme .theme-toggle {
+    color: white; /* For dark theme */
+  }
+  
+  body:not(.dark-theme) .theme-toggle {
+    color: black; /* For light theme */
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar .nav-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .navbar .navbar-right {
+      margin-top: 15px;
+    }
+  }
+  

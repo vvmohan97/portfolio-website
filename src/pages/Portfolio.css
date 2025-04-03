@@ -1,0 +1,193 @@
+/* General Styles for Portfolio Section */
+#portfolio {
+    padding: 80px 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+  }
+  
+
+  /* Light Theme - Portfolio Section */
+  body:not(.dark-theme) #portfolio {
+    background-color: rgb(240, 240, 240); /* Light theme background */
+    color: black; /* Light theme text color */
+  }
+  body.dark-theme #portfolio .project {
+    background-color: #444; /* Dark theme project background */
+  }
+  
+  /* Dark Theme - Portfolio Section */
+  body.dark-theme #portfolio {
+    background-color: #333; /* Dark theme background */
+    color: white; /* Dark theme text color */
+  }
+  body.dark-theme   .project-card{
+    color: #333;
+  }
+  
+
+  #portfolio h2 {
+   
+  }
+  .my-work-heading{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .my-work-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: inherit;
+  }
+  
+  /* Portfolio Container Layout */
+  .portfolio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .portfolio-content {
+    display: flex;
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: space-around;
+    /* max-width: 800px; */
+    /* text-align: center; */
+    /* margin-bottom: 40px; */
+
+  }
+  .text-content-div-portfolio{
+    display: flex;
+    /* justify-content: space-around; */
+    flex-direction: column;
+    width: 50%;
+  }
+  
+  .text-content-div-portfolio p{
+text-align: start;
+margin-top:10px !important
+  }
+  .portfolio-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px;
+    height: 550px !important;
+    justify-items: center;
+    width: 90%;
+    margin-left: 58px;
+    margin-top: 30px;
+  }
+  
+  /* Individual Project Card */
+  .project-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+align-items: flex-start !important;
+    width: 99%;
+    height: 90% !important;
+    max-width: 350px;
+    height: 180px;
+    background-color: white;
+    /* background-color: #f0cd00; */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .project-card-content{
+    margin: 5px;
+    display: flex;
+    height: 95%;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+  .heading-project-title{
+    text-align: start;
+  }
+  .heading-desc-content{
+    height: 60%;
+  }
+  .project-card-content p{
+    font-size: medium;
+    margin-top: 5px;
+    text-align: start;
+    line-height: 1.6;
+
+  }
+  .tech-div{
+    display: flex;
+    margin-top: 30px;
+    width: 100%;
+  }
+  .tech-stack-list-txt{
+    margin-top: 25px !important;
+    margin-left: 15px;
+  }
+  .techstackicon-div{
+    margin-top: 20px;
+    height: 2rem;
+    width: 2rem;
+  }
+  .techstack-icon{
+    height: 2rem;
+    width: 2rem;
+  }
+  .project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  
+  /* Card Overlay with Tech Stack and Description */
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .project-card:hover .card-overlay {
+    opacity: 1;
+  }
+  
+  .card-overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-overlay p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Media Query for Smaller Screens */
+  @media (max-width: 768px) {
+    #portfolio {
+      padding: 60px 20px;
+    }
+  
+    .portfolio-cards {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  

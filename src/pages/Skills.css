@@ -1,0 +1,161 @@
+/* General Section Styles */
+#skills {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex-wrap: wrap;
+  }
+  
+  /* Light Theme - Skills Section */
+  body:not(.dark-theme) #skills {
+    background-color: rgb(240, 240, 240); /* Light theme background */
+    color: black; /* Light theme text color */
+  }
+  
+  /* Dark Theme - Skills Section */
+  body.dark-theme #skills {
+    background-color: #333; /* Dark theme background */
+    color: white; /* Dark theme text color */
+  }
+  
+  /* Skills Container Layout */
+  .skills-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+  
+  /* Left Side: Content and Toggles */
+  .skills-content {
+    flex: 1;
+    max-width: 500px;
+    text-align: left;
+  }
+  
+  .skills-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .skills-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: inherit;
+  }
+  
+  .toggle-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .toggle-buttons button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .toggle-buttons button:hover {
+    background-color: #f0a500;
+    color: white;
+  }
+  
+  .toggle-buttons button.active {
+    background-color: #f0a500;
+    color: white;
+  }
+  
+  /* Right Side: Skills/Tools List */
+  .skills-list {
+    flex: 1;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  .skills-list h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Cards Layout */
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* justify-content: center; */
+  }
+  
+  /* Skill & Tool Cards */
+  .card {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: help;
+  }
+  
+  .card:hover {
+    transform: scale(1.1);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .card-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card:hover .card-info {
+    opacity: 1;
+  }
+  
+  /* Media Query for Smaller Screens */
+  @media (max-width: 768px) {
+    .skills-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .skills-content {
+      max-width: 100%;
+    }
+  
+    .cards-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
