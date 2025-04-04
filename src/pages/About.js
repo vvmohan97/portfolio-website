@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.css';
 import avatarImage from '../asserts/man_stand.png'; // Add the path to your avatar image here
-
+import pdfFile from '../asserts/files/MohanKumarVV CV.pdf'
 const About = () => {
   return (
     <section id="about">
@@ -10,21 +10,18 @@ const About = () => {
           <img src={avatarImage} alt="Jack Reacher" />
         </div>
         <div className="text-content-about">
-          <h1>Need a Creative Product? I can Help You!</h1>
+          <h1>Need a Creative Product?<br/> I can Help You!</h1>
           <p>
-            Hi! I’m MohanKumar, and I’m a developer who has passion for building clean web applications with intuitive functionalities.
-             I enjoy the process of turning ideas into reality using creative solutions.
-             
-              I’m always curious about learning new skills, tools, and concepts.
+          Hi! I’m MohanKumar. I’m a developer who loves building clean and easy-to-use websites. I enjoy turning ideas into real projects by finding creative solutions. I’m always excited to learn new skills, tools, and ideas.
+
               
           </p>
           <p>
-          In addition to working on various solo Front-End projects, 
-          I have worked with creative teams, which involves daily stand-ups and communications, source control, and project management.
+          Along with working on my own front-end projects, I’ve also worked with teams where we had daily meetings, shared our code, and managed tasks together.
           </p>
           <div className="buttons">
-            <button className="hire-button">Hire Me</button>
-            <button className="cv-button">Download CV</button>
+            <button className="hire-button"><a href='#contact' style={{textDecoration:'none',color:'white'}}>Hire Me</a></button>
+            <button className="cv-button"><a target='blank' style={{textDecoration:'none',color:'white'}} href={pdfFile}>Download CV </a></button>
           </div>
         </div>
        

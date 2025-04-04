@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Contact.css';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import watching from '../asserts/contact.png';
@@ -7,8 +7,17 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import emailjs from 'emailjs-com';
+import { Toast } from 'primereact/toast';
+
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+import Loader from '../utils/loader/Loader';
+
 const Contact = () => {
   // State to store form data
+const formRef= useRef()
+const toastCenter = useRef(null);
+const [loading,setLoading]= useState(false)
 
 const socialLinks =[
     {title:'Github',url :'https://github.com/vvmohan97',icon:<GitHubIcon/>},
@@ -21,6 +30,7 @@ const socialLinks =[
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+
     subject: '',
     message: '',
   });
@@ -37,7 +47,56 @@ const socialLinks =[
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formRef.current);
+    
     console.log('Form Data:', formData);
+    if(Object.entries(formData).length === ""){
+      console.log("12345678");
+      
+    }else{
+      setLoading(true)
+     
+
+      setLoading(true)
+      emailjs.sendForm(
+        'service_seeyhgh',
+        'template_e23msni',
+        formRef.current,
+        'qgXyHUhtuW7eQC72_'
+      ).then(
+        (result) => {
+          if(result?.status === 200){
+    const thanksNote = "Thanks for Reaching me";
+     const response = "E-mail Sent Successfully!"
+    setLoading(false)
+
+            let successToast={ severity: "success", summary: thanksNote, detail: response, life: 3000 }
+
+            toastCenter.current.show(successToast);
+         
+
+          }
+      else{
+        const Note = "Thanks for Reaching me";
+        const badRes = result.text
+        let basdToast={ severity: "error", summary: Note, detail: badRes, life: 3000 }
+     setLoading(false)
+
+        toastCenter.current.show(basdToast);
+      }
+          console.log('Email sent successfully:', result.text);
+        },
+        (error) => {
+       const Note = "Thanks for Reaching me";
+          const badRes = error.text
+          let basdToast={ severity: "error", summary: Note, detail: badRes, life: 3000 }
+       setLoading(false)
+
+          toastCenter.current.show(basdToast);
+          console.error('Error sending email:', error.text);
+        }
+      );
+    }
     // You can handle form submission logic here (e.g., send data to a server)
   };
 
@@ -45,6 +104,7 @@ const socialLinks =[
     <section id="contact">
       <div className="contact-container">
         {/* Contact Heading */}
+        <Toast ref={toastCenter}  position="top-right" />
         <div className="contact-heading">
           <h2>Get in Touch</h2>
           <p>
@@ -66,44 +126,39 @@ const socialLinks =[
          
             <ul>
               <li >
-
-                <strong style={{marginTop:'10px'}}><EmailIcon style={{marginTop:'10px'}} /></strong>
+{/* <div  className='data-stlye'> */}
+{/* <strong style={{marginTop:'10px'}}> */}
+  {/* <EmailIcon  /> */}
+  E-mail : 
+  {/* </strong> */}
                 <span className='span-cls-email'>
-                <a type='email'  href='email'> vvmohan.vsr@gmail.com </a></span>
+                <a >&nbsp; vvmohan.vsr@gmail.com </a></span>
+{/* </div> */}
+               
               </li>
               <li>
-                <strong><PhoneAndroidIcon/></strong> +91-9524244117
+                {/* <strong> */}
+                  Phone :
+                  {/* </strong>  */}
+                  <a>&nbsp; +91-9524244117</a>
               </li>
               <div className='social-icons-main-div'>
                 {
                     socialLinks?.map((social,socialIndex)=>(
-<div className='icon-div-social'>
+<div key={socialIndex} className='icon-div-social'>
                  <a target='blank' href={social?.url}>{social?.icon}</a>
                 </div>
                     ))
                 }
               
-                {/* <div>
-                    qwert
-                </div> */}
+         
               </div>
-              {/* <li>
-                <strong>LinkedIn:</strong>{' '}
-                <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
-                  LinkedIn Profile
-                </a>
-              </li>
-              <li>
-                <strong>GitHub:</strong>{' '}
-                <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer">
-                  GitHub Profile
-                </a>
-              </li> */}
+          
             </ul>
           </div>
           {/* Contact Form */}
           <div className="contact-form">
-            <form onSubmit={handleSubmit}>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <div className="form-field">
                 <label htmlFor="name">Your Name</label>
                 <input
@@ -144,7 +199,8 @@ const socialLinks =[
                 <label htmlFor="message">Your Message</label>
                 <textarea
                   id="message"
-                  name="message"
+                  maxlength="1300"
+                                    name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows="6"
@@ -152,8 +208,11 @@ const socialLinks =[
                 ></textarea>
               </div>
 
-              <button type="submit" className="submit-btn">
-                Send Message
+              <button type="submit" 
+              disabled={loading}
+              style={loading? {opacity:'0.5'}:{opacity:'1'}}
+              className="submit-btn">
+             {loading ? <Loader/> :   "Send Message"}
               </button>
             </form>
           </div>

@@ -1,7 +1,14 @@
 import React from 'react';
 import './Portfolio.css';
-import techIcon from '../asserts/tech_icon.png';
+// import techIcon from '../asserts/tech_globe.png';
+import techIcon from '../asserts/techicon1.png';
+
 import avatarImage from '../asserts/project1.png'; // Add the path to your avatar image here
+import appraisal from '../asserts/appraisal.jpg';
+import chatbot from '../asserts/chattbot.png';
+import adminpanel from '../asserts/adminpanel.jpg';
+import npmlogo from '../asserts/npm_logo1.png';
+import portfolio from '../asserts/portfolio.png';
 
 const Portfolio = () => {
   const projects = [
@@ -9,31 +16,31 @@ const Portfolio = () => {
       name: 'Appraisal Management  Application',
       techStack: 'React, Node.js, MongoDB',
       description: 'This Application makes it easy for companies to review and track employee performance. It simplifies setting goals and creating clear, useful reports for everyone.',
-      image: 'https://via.placeholder.com/300x200.png?text=Project+1',
+      image: appraisal,
     },
     {
       name: 'ChatBot for  Tourism Website',
       techStack: 'ReactJs,SocketIO',
       description: 'Created an interactive chatbot using React to enhance user engagement on the tourism chatbot.It helps to fetch real-time data,  up-to-dateinformation about tourist destinations, services, and booking options.',
-      image: 'https://via.placeholder.com/300x200.png?text=Project+2',
+      image: chatbot,
     },
     {
       name: 'E-Commerce Admin Panel',
       techStack: 'ReactJs, Firebase',
       description: 'The E-Commerce Admin Panel allows businesses to efficiently manage products, orders, customers, and sales. It provides real-time analytics, inventory tracking, and user management to streamline store operations.',
-      image: 'https://via.placeholder.com/300x200.png?text=Project+3',
+      image:adminpanel,
     },
     {
       name: 'NPM  Package',
       techStack: 'ReactJs',
       description: 'Enables developers to validate form input fields dynamically as users type, without requiring submission.',
-      image: 'https://via.placeholder.com/300x200.png?text=Project+4',
+      image: npmlogo,
     },
     {
         name: 'Portfolio Website',
         techStack: 'ReactJs',
         description: 'The Portfolio Website showcases my skills, projects, and experience in frontend development. It features a clean, interactive design, smooth navigation, and responsive UI, allowing visitors to explore my work effortlessly.',
-        image: 'https://via.placeholder.com/300x200.png?text=Project+4',
+        image: portfolio,
       },
   ];
 
@@ -46,8 +53,7 @@ const Portfolio = () => {
             <h2 className='my-work-heading'>My Works</h2>
             <h3>See My Works Which Will Amaze You!</h3>
           <p className='my-work-content'>
-          We develop high-quality, scalable, and long-lasting websites tailored to meet business needs. Our solutions feature well-documented, clean, and maintainable code, ensuring seamless performance and easy future enhancements. With intuitive and elegant interfaces, we create user-friendly experiences that even non-technical clients can manage effortlessly. Whether it's a portfolio, e-commerce, or enterprise application, our websites are built for efficiency, responsiveness, and long-term success.
-
+          I build fast, reliable, and easy-to-manage websites that fit your business perfectly. Every site is crafted with clean, well-organized code for smooth performance and easy updates. With modern, user-friendly designs, even non-tech users can handle things with ease. Whether it’s a personal portfolio, online store, or a large business app — my websites are built to be responsive, efficient, and ready for long-term growth.
 
 
 
@@ -71,6 +77,9 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <div key={index} className="project-card">
                 <div className='project-card-content'>
+                  <div className='main-div-project-img'>
+                    <img className='project-image' src={project.image}/>
+                  </div>
                <div className='heading-desc-content'>
                  <h4 className='heading-project-title'>{project.name}</h4>
                 <p>{project.description}</p>
@@ -94,6 +103,7 @@ const Portfolio = () => {
             </div>
           ))}
         </div>
+      
       </div>
     </section>
   );

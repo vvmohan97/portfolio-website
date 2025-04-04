@@ -39,8 +39,7 @@ const toolsSet =
         <div className="skills-content">
           <h2>My Skills</h2>
           <p>
-            Here are some of the skills and tools I work with. Click the toggles below to explore more about my capabilities.
-          </p>
+          Here are some of the skills and tools I work with. Click the buttons below to explore more about my capabilities.          </p>
           <div className="toggle-buttons">
             <button
               onClick={toggleSkills}
@@ -66,7 +65,7 @@ const toolsSet =
                {
                     skillSet?.map((skill,skillIndex)=>(
                         // <>
-                        <div className="card">
+                        <div key={skillIndex} className="card">
                   <img src={skill.logo} alt={skill.logo} />
                   <div className="card-info">
                     <span>{skill.skillName}</span>
