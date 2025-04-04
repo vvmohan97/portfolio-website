@@ -7,7 +7,7 @@ const Home = () => {
     <section id="home">
       <div className="home-content">
         <div className="text-content">
-          <h1><span className='hi-text'>Hi there,</span> I’m MohanKumar, a Frontend Developer.</h1>
+          <h1><span className='hi-text'>Hi there,</span> I’m MohanKumar.V V, a Frontend Developer.</h1>
           <p>
           A React.js developer who focuses on making websites that look great and work well.</p>
           <button className='get-in-touch-btn'><a style={{textDecoration:"none",color:"white"}} href='#contact'>Get In Touch</a></button>

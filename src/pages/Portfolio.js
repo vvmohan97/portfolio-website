@@ -82,7 +82,10 @@ const Portfolio = () => {
                   </div>
                <div className='heading-desc-content'>
                  <h4 className='heading-project-title'>{project.name}</h4>
-                <p>{project.description}</p>
+                 <div className='project-content-div'>
+                 <p>{project.description}</p>
+
+                 </div>
                 </div>
                 <div className='tech-div'>
                 <div className='techstackicon-div'>
