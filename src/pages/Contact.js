@@ -69,6 +69,13 @@ const socialLinks =[
     const thanksNote = "Thanks for Reaching me";
      const response = "E-mail Sent Successfully!"
     setLoading(false)
+    setFormData({
+      name: '',
+      email: '',
+  
+      subject: '',
+      message: '',
+    })
 
             let successToast={ severity: "success", summary: thanksNote, detail: response, life: 3000 }
 

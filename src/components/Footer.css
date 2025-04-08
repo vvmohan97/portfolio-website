@@ -73,6 +73,29 @@ body:not(.dark-theme) #footer {
         opacity: 0;
       }
     }
+
+    /* .blink-text-name {
+      background: linear-gradient(
+        90deg,
+        #92effd,
+        #4e65ff,
+        #92effd
+      );
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: shimmer 2.5s linear infinite;
+    } */
+    
+    @keyframes shimmer {
+      0% {
+        background-position: 100% 0;
+      }
+      100% {
+        background-position: 50% 0;      }
+    }
+    
   /* Responsive Styles */
   @media (max-width: 768px) {
     .footer-content {
