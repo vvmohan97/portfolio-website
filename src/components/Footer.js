@@ -11,7 +11,7 @@ const Footer = () => {
 
         <div className="footer-content">
           <div>
-          <p>&copy; {new Date().getFullYear()}&nbsp;<span className='blink-text-name' style={{color:'#f0a500'}}>MohanKumar V V.</span>  All rights Reserved.</p>
+          <p>Designed & Built by&nbsp;<span className='blink-text-name' style={{color:'#f0a500'}}>MohanKumar V V.&nbsp;</span>&copy; {new Date().getFullYear()}&nbsp;  All rights Reserved.</p>
             </div>  
       
         </div>
