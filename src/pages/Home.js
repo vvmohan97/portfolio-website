@@ -16,6 +16,7 @@ const Home = () => {
         <div  className="avatar-home">
           <img src={avatarImage} alt="MohanKumar" />
         </div>
+        
       </div>
     </section>
   );
