@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Skills.css';
 import webpackLogo from '../asserts/webpack_logo.png';
-import gitLogo from '../asserts/git_logo.png';
+import gitLogo from '../asserts/git_logo_gh.png';
 import nodeLogo from '../asserts/node_logo.png';
 import jsLogo from '../asserts/js_logo.png';
 import reactLogo from '../asserts/react_logo.png';
@@ -27,7 +27,7 @@ const toolsSet =
 [
     {toolName : "VS Code", logo: vscodeLogo},
     {toolName : "Git", logo: gitLogo},
-    {toolName : "Webpack", logo: webpackLogo},
+    // {toolName : "Webpack", logo: webpackLogo},
 ]
   const toggleSkills = () => setShowSkills(true);
   const toggleTools = () => setShowSkills(false);

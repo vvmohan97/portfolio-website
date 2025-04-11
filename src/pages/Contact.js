@@ -45,7 +45,7 @@ const socialLinks =[
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(formRef.current);
     
@@ -58,7 +58,7 @@ const socialLinks =[
      
 
       setLoading(true)
-      emailjs.sendForm(
+ await     emailjs.sendForm(
         'service_seeyhgh',
         'template_e23msni',
         formRef.current,

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import './Home.css';
-import avatarImage from '../asserts/avatarhome2.png'; // Add the path to your avatar image here
+import avatarImage from '../asserts/avatarhome2.png'; 
+
+
+
 
 const Home = () => {
+
+
   return (
     <section id="home">
       <div className="home-content">
@@ -14,9 +19,10 @@ const Home = () => {
           <p style={{marginTop:'15px'}}>Let’s build something amazing together!</p>
         </div>
         <div  className="avatar-home">
-          <img src={avatarImage} alt="MohanKumar" />
+          <img src={avatarImage}  alt="MohanKumar" />
+         
         </div>
-        
+
       </div>
     </section>
   );
