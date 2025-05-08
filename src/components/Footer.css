@@ -54,7 +54,7 @@ body:not(.dark-theme) #footer {
   }
   
   .blink-text-name {
-    animation: blink-smooth 2.5s ease-in-out infinite;
+    animation: blink-smooth 2.5s ease-in-out forwards;
   }  
     @keyframes blink-smooth {
       0%, 100% {
