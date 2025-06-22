@@ -185,7 +185,7 @@ body.dark-theme .language-select {
   opacity: 0.95;
   z-index: 1001;
   /* animation: bounce 0.6s ease, fadeout 8s forwards; */
-  animation: slowBounce 1.2s ease-out forwards;
+  animation: slowBounce 2s ease-out forwards;
 
   /* animation: fadeout 8s forwards; */
 }

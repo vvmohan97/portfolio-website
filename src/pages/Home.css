@@ -116,7 +116,7 @@ body.dark-theme #home {
     rgba(255, 223, 0, 0) 100%
   ); 
   transform: skewX(-50deg);
-  animation: shimmer 2s infinite;
+  animation: shimmer 2.5s infinite;
   pointer-events: none;
 }
 
