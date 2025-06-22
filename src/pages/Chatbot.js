@@ -13,7 +13,9 @@ const Chatbot = () => {
   const handleChatbot = () => {
     setIsChatbotOpen(!isChatbotOpen);
   };
-  let socketUrl = `ws://chat-bot-web-socket-backend.onrender.com`;
+  // let socketUrl = `ws://chat-bot-web-socket-backend.onrender.com`;
+   let socketUrl = `ws://chat-bot-web-socket-backend.vercel.app/`;
+
   const [socket, setSocket] = useState("");
   const [loaderMsg, setLoaderMsg] = useState(false);
   useEffect(() => {
