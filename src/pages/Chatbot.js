@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import "./chatbot.css";
 import chatIcon from "../asserts/chat_icon.png";
 import closeBotIcon from "../asserts/close_bot.png";
 import AiAgent from "../asserts/ai_agent.png";
 import sendIcon from "../asserts/send_icon.png";
-import { io, Socket } from "socket.io-client";
+import { io } from "socket.io-client";
 const Chatbot = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -13,7 +13,57 @@ const Chatbot = () => {
   const handleChatbot = () => {
     setIsChatbotOpen(!isChatbotOpen);
   };
+  let socketUrl = `ws://chat-bot-web-socket-backend.onrender.com`;
+  const [socket, setSocket] = useState("");
+  const [loaderMsg, setLoaderMsg] = useState(false);
+  useEffect(() => {
+    if (isChatbotOpen) {
+      const newSocket = io(socketUrl, {
+        transports: ["websocket"],
+      });
+      setSocket(newSocket);
+      newSocket.emit("userMessage", () => {
+        setMessages((prev) => [
+          ...prev,
+          { sender: "user", message: "hi", type: "text" },
+        ]);
+      });
+    }
+  }, []);
+  useEffect(() => {
+    if (isChatbotOpen) {
+      const newSocket = io(socketUrl, {
+        transports: ["websocket"],
+      });
+      setSocket(newSocket);
+      setLoaderMsg(false);
+      newSocket.emit("userMessage", () => {
+        setMessages((prev) => [
+          ...prev,
+          { sender: "user", message: "hi", type: "text" },
+        ]);
+      });
+      newSocket.on("botReply", (data) => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            sender: "bot",
+            message: data,
+            type: "text",
+          },
+        ]);
+      });
 
+      newSocket.on("connect", () => {});
+      newSocket.on(`disconnect`, () => {
+        console.log("socket disoonnected");
+      });
+
+      return () => {
+        newSocket.disconnect();
+      };
+    }
+  }, [messages]);
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -44,63 +94,6 @@ const Chatbot = () => {
       handleSend();
     }
   };
-
-  let socketUrl = `https://chat-bot-web-socket-backend.onrender.com`;
-  const [socket, setSocket] = useState("");
-  const [loaderMsg, setLoaderMsg] = useState(false);
-  useEffect(()=>{
-if(isChatbotOpen){
-       const newSocket = io(socketUrl, {
-        transports: ["websocket"],
-      });
-      setSocket(newSocket);
-         newSocket.emit('userMessage',()=>{
-        setMessages((prev)=>[
-          ...prev,{sender:"user",message:'hi',type:'text'}
-        ])
-      })
-}
-  },[])
-  useEffect(() => {
-    if (isChatbotOpen) {
-      const newSocket = io(socketUrl, {
-        transports: ["websocket"],
-      });
-      setSocket(newSocket);
-      setLoaderMsg(false);
-      newSocket.emit('userMessage',()=>{
-        setMessages((prev)=>[
-          ...prev,{sender:"user",message:'hi',type:'text'}
-        ])
-      })
-      newSocket.on("botReply", (data) => {
-        console.log(data);
-
-        setMessages((prev) => [
-          ...prev,
-          {
-            sender: "bot",
-            message: data,
-            type: "text",
-          },
-        ]);
-      });
-
-      newSocket.on("connect", () => {
-        console.log("socket Connected");
-      });
-      // newSocket.on(`disconnect`,()=>{
-      //   console.log('socket disoonnected');
-
-      // })
-
-      // return ()=>{
-      //   newSocket.disconnect()
-      // }
-    }
-  }, [messages]);
-
-  console.log(messages);
 
   return (
     <>
@@ -148,7 +141,7 @@ if(isChatbotOpen){
               onChange={handleChange}
               onKeyDown={handleKeyDown}
             />
-            <img  onClick={handleSend} src={sendIcon} alt="send" />
+            <img onClick={handleSend} src={sendIcon} alt="send" />
           </div>
         </div>
       )}

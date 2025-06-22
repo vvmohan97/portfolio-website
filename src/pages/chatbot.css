@@ -3,8 +3,8 @@
   top: 85%;
   right: 3%;
   z-index: 9999;
-  width: 3rem; /* or whatever suits your design */
-  height: 3rem; /* optional */
+  width: 3rem;
+  height: 3rem;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -52,7 +52,7 @@
 }
 .chat_icon_open_header {
   height: 2rem;
-cursor: pointer;
+  cursor: pointer;
   width: 2rem;
 }
 
@@ -62,7 +62,8 @@ cursor: pointer;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background-image: url('../asserts/chat_bg_.png');background-size: cover;
+  background-image: url("../asserts/chat_bg_.png");
+  background-size: cover;
   background-repeat: no-repeat;
   /* opacity: 0.7; */
 }
@@ -74,38 +75,35 @@ cursor: pointer;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   position: relative;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.chat-footer img{
-    height: 1.8rem;
-    width: 1.8rem;
-    cursor: pointer;
-
+.chat-footer img {
+  height: 1.8rem;
+  width: 1.8rem;
+  cursor: pointer;
 }
-.chat-footer textarea{
-    width: 90%;
-    height: 100%;
-    border-bottom-left-radius: 15px;
-    padding: 8px;
-      resize: none;
+.chat-footer textarea {
+  width: 90%;
+  height: 100%;
+  border-bottom-left-radius: 15px;
+  padding: 8px;
+  resize: none;
 
-    border: none;
+  border: none;
 }
-.chat-footer textarea:focus{
-    border:none ;
-    outline: red;
+.chat-footer textarea:focus {
+  border: none;
+  outline: red;
 }
-
-
 
 .bot-container {
   margin-top: 5px;
   display: flex;
-    word-break: break-word; 
-color: white;
+  word-break: break-word;
+  color: white;
   align-items: center;
 }
 .user {
@@ -116,7 +114,7 @@ color: white;
   max-width: 15rem;
   min-width: 3rem;
   word-wrap: break-word;
- background-color: #0E61F6;
+  background-color: #0e61f6;
 }
 .bot {
   align-self: flex-start;
@@ -125,9 +123,14 @@ color: white;
   float: right;
   border-radius: 5px;
   max-width: 13rem;
-    min-width: 3rem;
+  min-width: 3rem;
 
   word-wrap: break-word;
 
-    background:linear-gradient(90deg, rgb(254, 173, 0) 3%, rgb(255, 162, 0) 36%, rgba(214,78,0,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgb(254, 173, 0) 3%,
+    rgb(255, 162, 0) 36%,
+    rgba(214, 78, 0, 1) 100%
+  );
 }

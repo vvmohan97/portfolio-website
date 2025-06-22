@@ -1,13 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import AppRouter from './routing/AppRouter';
+import logo from "./logo.svg";
+import "./App.css";
+import AppRouter from "./routing/AppRouter";
 
 function App() {
   return (
-   <>
-   <AppRouter/>
-   </>
-   
+    <>
+      <AppRouter />
+    </>
   );
 }
 
