@@ -20,7 +20,7 @@ const Chatbot = () => {
   const [socket, setSocket] = useState("");
   const [loaderMsg, setLoaderMsg] = useState(false);
   useEffect(() => {
-    if (isChatbotOpen) {
+    // if (isChatbotOpen) {
       const newSocket = io(socketUrl, {
         transports: ["websocket"],
       });
@@ -31,7 +31,7 @@ const Chatbot = () => {
           { sender: "user", message: "hi", type: "text" },
         ]);
       });
-    }
+    // }
   }, []);
   useEffect(() => {
     if (isChatbotOpen) {
