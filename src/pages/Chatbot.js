@@ -36,7 +36,7 @@ const Chatbot = () => {
     // }
   }, []);
   useEffect(() => {
-    if (isChatbotOpen) {
+    // if (isChatbotOpen) {
       const newSocket = io(socketUrl, {
         transports: ["websocket"],
       });
@@ -67,7 +67,7 @@ const Chatbot = () => {
       return () => {
         newSocket.disconnect();
       };
-    }
+    // }
   }, [messages]);
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
