@@ -24,6 +24,7 @@ const Chatbot = () => {
       const newSocket = io(socketUrl, {
         transports: ["websocket"],
       });
+    
       setSocket(newSocket);
       newSocket.emit("userMessage", () => {
         setMessages((prev) => [
