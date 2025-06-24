@@ -18,7 +18,7 @@ const Chatbot = () => {
   //  let socketUrl = `https://chat-bot-web-socket-backend.vercel.app/`;
 
   const [socket, setSocket] = useState("");
-  const [loaderMsg, setLoaderMsg] = useState(false);
+  // const [loaderMsg, setLoaderMsg] = useState(false);
   useEffect(() => {
     // if (isChatbotOpen) {
       const newSocket = io(socketUrl, {
@@ -39,7 +39,7 @@ const Chatbot = () => {
         transports: ["websocket"],
       });
       setSocket(newSocket);
-      setLoaderMsg(false);
+      // setLoaderMsg(false);
       newSocket.emit("userMessage", () => {
         setMessages((prev) => [
           ...prev,
@@ -78,7 +78,7 @@ const Chatbot = () => {
   const handleSend = () => {
     if (userMsg.trim() === "") return;
 
-    setLoaderMsg(true);
+    // setLoaderMsg(true);
 
     setMessages((previousMsg) => [
       ...previousMsg,
@@ -127,7 +127,7 @@ const Chatbot = () => {
             </div>
           </div>
           <div className="chat-body">
-            {loaderMsg && <div className={`bot-container bot`}>Loading...</div>}
+            // {loaderMsg && <div className={`bot-container bot`}>Loading...</div>}
             {messages?.map((msg, index) => (
               <>
                 <div key={index} className={`bot-container ${msg.sender}`}>
