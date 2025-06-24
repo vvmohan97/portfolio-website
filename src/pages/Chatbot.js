@@ -129,7 +129,6 @@ const Chatbot = () => {
             </div>
           </div>
           <div className="chat-body">
-            // {loaderMsg && <div className={`bot-container bot`}>Loading...</div>}
             {messages?.map((msg, index) => (
               <>
                 <div key={index} className={`bot-container ${msg.sender}`}>
