@@ -20,21 +20,21 @@ const Chatbot = () => {
 
   const [socket, setSocket] = useState("");
   // const [loaderMsg, setLoaderMsg] = useState(false);
-  useEffect(() => {
-    // if (isChatbotOpen) {
-      const newSocket = io(socketUrl, {
-        transports: ["websocket"],
-      });
+  // useEffect(() => {
+  //   // if (isChatbotOpen) {
+  //     const newSocket = io(socketUrl, {
+  //       transports: ["websocket"],
+  //     });
     
-      setSocket(newSocket);
-      newSocket.emit("userMessage", () => {
-        setMessages((prev) => [
-          ...prev,
-          { sender: "user", message: "hi", type: "text" },
-        ]);
-      });
-    // }
-  }, []);
+  //     setSocket(newSocket);
+  //     newSocket.emit("userMessage", () => {
+  //       setMessages((prev) => [
+  //         ...prev,
+  //         { sender: "user", message: "hi", type: "text" },
+  //       ]);
+  //     });
+  //   // }
+  // }, []);
   useEffect(() => {
     // if (isChatbotOpen) {
       const newSocket = io(socketUrl, {
