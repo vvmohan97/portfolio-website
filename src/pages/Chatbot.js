@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import "./chatbot.css";
 import chatIcon from "../asserts/chat_icon.png";
@@ -14,10 +13,9 @@ const Chatbot = () => {
   const [userMsg, setUserMsg] = useState("");
   const bottomRef = useRef(null);
 
- // let socketUrl = "http://localhost:5000"; 
-  let socketUrl = "https://chat-bot-web-socket-backend.onrender.com/"; 
+  // let socketUrl = "http://localhost:5000";
+  let socketUrl = "https://chat-bot-web-socket-backend.onrender.com/";
   const [socket, setSocket] = useState(null);
-  const [loaderMsg, setLoaderMsg] = useState(false);
 
   const handleChatbot = () => {
     setIsChatbotOpen(!isChatbotOpen);
@@ -27,29 +25,55 @@ const Chatbot = () => {
     if (isChatbotOpen) {
       const newSocket = io(socketUrl, { transports: ["websocket"] });
       setSocket(newSocket);
-      newSocket?.emit("userMessage", "Hi"); 
+      setMessages((prev) => [
+        { sender: "bot", message: "Loading...", type: "loading" },
+      ]);
+      newSocket?.emit("userMessage", "Hi");
 
       newSocket.on("botReply", (data) => {
-        // setLoaderMsg(false);
-console.log(data);
+        setTimeout(() => {
+          setMessages((prev) => {
+            let updated = [...prev];
 
-        setMessages((prev) =>{
-          let updated = [...prev]
-          console.log(updated);
-          
-    if (updated.length > 0 && updated[updated.length - 1].type === "loading") {
-      updated.pop(); 
-    }
+            if (
+              updated.length > 0 &&
+              updated[updated.length - 1].type === "loading"
+            ) {
+              updated.pop();
+            }
 
-    updated.push({ sender: "bot", message: data.message, type: data.type });
-          console.log(updated);
+            updated.push({
+              sender: "bot",
+              message: data.message,
+              type: data.type,
+            });
 
-    return updated;
-        });
+            return updated;
+          });
+        }, 2000);
       });
 
+      //       newSocket.on("botReply", (data) => {
+      //         // setLoaderMsg(false);
+      // console.log(data);
+
+      //         setMessages((prev) =>{
+      //           let updated = [...prev]
+      //           console.log(updated);
+
+      //     if (updated.length > 0 && updated[updated.length - 1].type === "loading") {
+      //       updated.pop();
+      //     }
+
+      //     updated.push({ sender: "bot", message: data.message, type: data.type });
+      //           console.log(updated);
+
+      //     return updated;
+      //         });
+      //       });
+
       newSocket.on("connect", () => {
-        console.log("✅ Socket connected:", newSocket.id);
+        console.log(" Socket connected:");
       });
 
       newSocket.on("disconnect", () => {
@@ -60,7 +84,7 @@ console.log(data);
         newSocket.disconnect();
       };
     }
-  }, [isChatbotOpen]); 
+  }, [isChatbotOpen]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -72,19 +96,14 @@ console.log(data);
 
   const handleSend = () => {
     if (userMsg.trim() === "") return;
-
-    // setLoaderMsg(true);
-    // setLoaderMsg(true);
-
     setMessages((prev) => [
       ...prev,
       { sender: "user", message: userMsg, type: "text" },
-            { sender: "bot", message:"Loading...", type: "loading" },
-
+      { sender: "bot", message: "Loading...", type: "loading" },
     ]);
 
     if (socket && socket.connected) {
-      socket.emit("userMessage", userMsg); 
+      socket.emit("userMessage", userMsg);
     } else {
       console.warn("⚠️ Socket not connected. Message not sent.");
     }
@@ -130,17 +149,23 @@ console.log(data);
 
           <div className="chat-body">
             {messages.map((msg, index) => (
-              
               <div key={index} className={`bot-container ${msg.sender}`}>
-  {msg.type === "text" ? (
-        msg.message
-      ) :
-      msg.type === "link" ?
-      <a href={msg.message} target="_blank">{msg.message}</a>:"" 
-      
-      }   
-      {/* {msg.type ==="linkqr"? <img src={msg.message}/>:""}    */}
-         </div>
+                {msg.type === "text" ? (
+                  msg.message
+                ) : msg.type === "link" ? (
+                  <a href={msg.message} target="_blank">
+                    {msg.message}
+                  </a>
+                ) : msg.type === "linkqr" ? (
+                  <img src={msg.message} alt="QR code" />
+                ) : msg.type === "loading" ? (
+                  <div className="loader-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                ) : null}
+              </div>
             ))}
             <div ref={bottomRef}></div>
           </div>
