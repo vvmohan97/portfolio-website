@@ -31,6 +31,7 @@ const Chatbot = () => {
 
       newSocket.on("botReply", (data) => {
         // setLoaderMsg(false);
+console.log(data);
 
         setMessages((prev) =>{
           let updated = [...prev]
