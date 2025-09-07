@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.css';
 import avatarImage from '../asserts/man_stand.png'; // Add the path to your avatar image here
-import pdfFile from '../asserts/files/MohanKumarVV CV.pdf'
+import pdfFile from '../asserts/files/MohanKumar_VV_CV_FS.pdf'
 const About = () => {
   return (
     <section id="about">

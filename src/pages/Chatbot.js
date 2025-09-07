@@ -1,98 +1,95 @@
 
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./chatbot.css";
 import chatIcon from "../asserts/chat_icon.png";
 import closeBotIcon from "../asserts/close_bot.png";
 import AiAgent from "../asserts/ai_agent.png";
 import sendIcon from "../asserts/send_icon.png";
 import { io } from "socket.io-client";
+import PrompMsg from "./PrompMsg";
+
 const Chatbot = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [userMsg, setUserMsg] = useState("");
   const bottomRef = useRef(null);
+
+ // let socketUrl = "http://localhost:5000"; 
+  let socketUrl = "https://chat-bot-web-socket-backend.onrender.com/"; 
+  const [socket, setSocket] = useState(null);
+  const [loaderMsg, setLoaderMsg] = useState(false);
+
   const handleChatbot = () => {
     setIsChatbotOpen(!isChatbotOpen);
-
   };
-  let socketUrl = `https://chat-bot-web-socket-backend.onrender.com/`;
-  //  let socketUrl = `https://chat-bot-web-socket-backend.vercel.app/`;
 
-  const [socket, setSocket] = useState("");
-  // const [loaderMsg, setLoaderMsg] = useState(false);
-  // useEffect(() => {
-  //   // if (isChatbotOpen) {
-  //     const newSocket = io(socketUrl, {
-  //       transports: ["websocket"],
-  //     });
-    
-  //     setSocket(newSocket);
-  //     newSocket.emit("userMessage", () => {
-  //       setMessages((prev) => [
-  //         ...prev,
-  //         { sender: "user", message: "hi", type: "text" },
-  //       ]);
-  //     });
-  //   // }
-  // }, []);
   useEffect(() => {
-    // if (isChatbotOpen) {
-      const newSocket = io(socketUrl, {
-        transports: ["websocket"],
-      });
+    if (isChatbotOpen) {
+      const newSocket = io(socketUrl, { transports: ["websocket"] });
       setSocket(newSocket);
-      // setLoaderMsg(false);
-      newSocket.emit("userMessage", () => {
-        setMessages((prev) => [
-          ...prev,
-          { sender: "user", message: "hi", type: "text" },
-        ]);
-      });
+      newSocket?.emit("userMessage", "Hi"); 
+
       newSocket.on("botReply", (data) => {
-        setMessages((prev) => [
-          ...prev,
-          {
-            sender: "bot",
-            message: data,
-            type: "text",
-          },
-        ]);
+        // setLoaderMsg(false);
+
+        setMessages((prev) =>{
+          let updated = [...prev]
+          console.log(updated);
+          
+    if (updated.length > 0 && updated[updated.length - 1].type === "loading") {
+      updated.pop(); 
+    }
+
+    updated.push({ sender: "bot", message: data.message, type: data.type });
+
+    return updated;
+        });
       });
 
-      newSocket.on("connect", () => {});
-      newSocket.on(`disconnect`, () => {
-        console.log("socket disoonnected");
+      newSocket.on("connect", () => {
+        console.log("✅ Socket connected:", newSocket.id);
+      });
+
+      newSocket.on("disconnect", () => {
+        console.log(" Socket disconnected");
       });
 
       return () => {
         newSocket.disconnect();
       };
-    // }
-  }, [messages]);
+    }
+  }, [isChatbotOpen]); 
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
   const handleChange = (e) => {
-    const value = e.target.value;
-    setUserMsg(value);
+    setUserMsg(e.target.value);
   };
 
   const handleSend = () => {
     if (userMsg.trim() === "") return;
 
     // setLoaderMsg(true);
+    // setLoaderMsg(true);
 
-    setMessages((previousMsg) => [
-      ...previousMsg,
+    setMessages((prev) => [
+      ...prev,
       { sender: "user", message: userMsg, type: "text" },
+            { sender: "bot", message:"Loading...", type: "loading" },
+
     ]);
+
     if (socket && socket.connected) {
-      socket.emit("userMessage", userMsg);
+      socket.emit("userMessage", userMsg); 
     } else {
-      console.warn(" Socket not connected. Message not sent.");
+      console.warn("⚠️ Socket not connected. Message not sent.");
     }
+
     setUserMsg("");
   };
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -117,7 +114,7 @@ const Chatbot = () => {
             </div>
             <div>
               <h3>AI agent </h3>
-              <p>i will help you to know more </p>
+              <p>I will help you to know more </p>
             </div>
             <div>
               <img
@@ -128,16 +125,23 @@ const Chatbot = () => {
               />
             </div>
           </div>
+
           <div className="chat-body">
-            {messages?.map((msg, index) => (
-              <>
-                <div key={index} className={`bot-container ${msg.sender}`}>
-                  {msg.message}
-                </div>
-              </>
+            {messages.map((msg, index) => (
+              
+              <div key={index} className={`bot-container ${msg.sender}`}>
+  {msg.type === "text" ? (
+        msg.message
+      ) :
+      msg.type === "link" ?
+      <a href={msg.message} target="_blank">{msg.message}</a>:"" 
+      
+      }   
+      {/* {msg.type ==="linkqr"? <img src={msg.message}/>:""}    */}
+         </div>
             ))}
+            <div ref={bottomRef}></div>
           </div>
-          <div ref={bottomRef}></div>
 
           <div className="chat-footer">
             <textarea
