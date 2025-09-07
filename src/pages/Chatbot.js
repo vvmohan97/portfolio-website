@@ -41,6 +41,7 @@ const Chatbot = () => {
     }
 
     updated.push({ sender: "bot", message: data.message, type: data.type });
+          console.log(updated);
 
     return updated;
         });
